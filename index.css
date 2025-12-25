@@ -6,6 +6,7 @@ html, body{
     margin-left: 0;
     margin-right: 0;
     height: auto;
+    text-align: justify;
 }
 
 h1{
@@ -45,6 +46,7 @@ p{
 
 header{
     background-color: #1a232c;
+    justify-content: flex-end;
     padding-top: 5px;
     padding-bottom: 5px;
     margin-top: 0px;
@@ -58,8 +60,9 @@ header{
     top: 0;
 }
 
-.center{
+.fotoEnome{
     text-align: center;
+    padding-top: 15px;
 }
 
 .left{
@@ -72,10 +75,14 @@ header{
 
 nav{
     display: flex;
-    gap: 0px;
 }
 
-nav a{
+nav ul{
+    list-style: none;
+    display: flex;
+}
+
+nav ul li a{
     background-color: #1a232c;
     padding-bottom: 10px;
     padding-top: 10px;
@@ -83,8 +90,96 @@ nav a{
     padding-right: 25px;
     text-decoration: none;
     color: azure;
+    position: relative;
 }
 
-nav a:hover{
+nav ul li a:hover{
     background-color: #2d3844;
+}
+
+nav ul li:has(ul:hover) a{
+    background-color: #2d3844;
+}
+
+nav ul li ul li a{
+    background-color: #171f27; 
+    padding: 0px;
+}
+
+nav ul li ul li a:hover{
+    background-color: #171f27; 
+    padding: 0px;
+    color: rgb(164, 164, 164);
+}
+
+nav ul li ul{
+    display: none;
+}
+
+nav ul li:hover ul{
+    display: block;
+    position: absolute;
+    top: 83%; /* Gambiarra (?)*/
+    background-color: #171f27;
+    padding: 15px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+nav ul li:hover ul li{
+    padding: 5px;
+}
+
+.caixaDes{
+    background-color: aliceblue;
+    color: #0D1117;
+    border-radius: 10px;
+}
+
+.conteudoCaixaDes{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    height: 250px;
+    overflow-y: auto;
+}
+
+.headerCaixaDes{
+    background-color: rgb(184, 191, 197);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.bottomCaixaDes{
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    background-color: rgb(184, 191, 197);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 12px;
+    padding-right: 12px;
+    position: relative;
+}
+
+.bottomCaixaDes button{
+    border-radius: 50%;
+    margin: 3px;
+}
+
+.bottomCaixaDes button:hover{
+    background-color: rgb(203, 203, 203);
+}
+
+.hidden{
+    display: none;
+    position: absolute;
 }
