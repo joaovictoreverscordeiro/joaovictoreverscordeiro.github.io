@@ -185,18 +185,3 @@ nav ul li:hover ul li{
     display: none;
     position: absolute;
 }
-
-.bottom{
-    background-color: #1a232c;
-    display: flex;
-    align-items: flex-end;
-    height: 200px;
-}
-
-.bottom h1{
-    margin: 0;
-}
-
-.comunication{
-    width: 500px;
-}
