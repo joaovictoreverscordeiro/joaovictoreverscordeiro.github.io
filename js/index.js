@@ -2,7 +2,7 @@
 Script que roda a lista de desafios da página inicial
 */
 
-const num = 2;
+const num = 3;
 
 var n = 1;
 document.getElementById("contador").innerHTML=`Página ${n}/${num}`;

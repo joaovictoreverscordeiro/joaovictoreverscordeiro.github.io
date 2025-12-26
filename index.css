@@ -58,6 +58,7 @@ header{
     display: flex;
     position: sticky;
     top: 0;
+    z-index: 1000;
 }
 
 .fotoEnome{
@@ -143,6 +144,7 @@ nav ul li:hover ul li{
     padding-top: 8px;
     padding-bottom: 8px;
     height: 250px;
+    width: auto;
     overflow-y: auto;
 }
 
@@ -171,12 +173,13 @@ nav ul li:hover ul li{
 }
 
 .bottomCaixaDes button{
+    background-color: rgb(166, 172, 176);
     border-radius: 50%;
     margin: 3px;
 }
 
 .bottomCaixaDes button:hover{
-    background-color: rgb(203, 203, 203);
+    background-color: rgb(132, 137, 142);
 }
 
 .hidden{
