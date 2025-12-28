@@ -82,6 +82,10 @@ nav ul{
     display: flex;
 }
 
+nav ul li{
+    height: 100%;
+}
+
 nav ul li a{
     background-color: #1a232c;
     padding-bottom: 10px;
@@ -93,8 +97,9 @@ nav ul li a{
     position: relative;
 }
 
-nav ul li a:hover{
+nav ul li:hover a{
     background-color: #2d3844;
+    height: 100%;
 }
 
 nav ul li:has(ul:hover) a{
@@ -107,9 +112,12 @@ nav ul li ul li a{
 }
 
 nav ul li ul li a:hover{
-    background-color: #171f27; 
-    padding: 0px;
     color: rgb(164, 164, 164);
+}
+
+nav ul li ul li a:active{
+    color: rgb(164, 164, 164);
+    font-size: 14.5px;
 }
 
 nav ul li ul{
@@ -119,12 +127,13 @@ nav ul li ul{
 nav ul li:hover ul{
     display: block;
     position: absolute;
-    top: 83%; /* Gambiarra (?)*/
+    top: 50.2px; /* Gambiarra (?)*/
     background-color: #171f27;
     padding: 15px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     border-top-right-radius: 8px;
+    width: 117.6px;
 }
 
 nav ul li:hover ul li{
