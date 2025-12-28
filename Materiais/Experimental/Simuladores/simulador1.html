@@ -41,28 +41,28 @@
         <div class="caixaMult">
             <div class="Mult">
                 <div class="visor">
-                    <p style="font-size: x-large;"><strong>100.0</strong></p>
-                    <p style="font-size: x-large;"><strong id="escala"></strong></p>
+                    <p style="font-size: x-large;" id="visorValor"><strong>100.0</strong></p>
+                    <p style="font-size: x-large;" id="visorEsc"><strong id="escala"></strong></p>
                 </div>
                 <div class="escalas">
                     <div class="seletor">
                     </div>
                     <div class="labels">
-                        <span style="--angle: 0deg;"><button style="width: auto;">OFF</button></span>
+                        <span style="--angle: 0deg;"><button style="width: auto;" id="off" onclick="off()">OFF</button></span>
                         <span style="transform: translate(-50%, -50%) rotate(30deg) translateY(-125px) rotate(-30deg); color: black;"><strong>V⎓</strong></span>
-                        <span style="--angle: 30deg;"><button>0,2</button></span>
-                        <span style="--angle: 60deg;"><button>2</button></span>
-                        <span style="--angle: 90deg;"><button>20</button></span>
+                        <span style="--angle: 30deg;"><button id="escala1" onclick="salvarEsc(1)">0,2</button></span>
+                        <span style="--angle: 60deg;"><button id="escala2" onclick="salvarEsc(2)">2</button></span>
+                        <span style="--angle: 90deg;"><button id="escala3" onclick="salvarEsc(3)">20</button></span>
                         <span style="transform: translate(-50%, -50%) rotate(120deg) translateY(-125px) rotate(-120deg); color: black;"><strong>A⎓</strong></span>
-                        <span style="--angle: 120deg;"><button>2&mu;</button></span>
-                        <span style="--angle: 150deg;"><button>2m</button></span>
-                        <span style="--angle: 180deg;"><button>2</button></span>
-                        <span style="--angle: 210deg;"><button>20</button></span>
+                        <span style="--angle: 120deg;"><button id="escala4" onclick="salvarEsc(4)">2&mu;</button></span>
+                        <span style="--angle: 150deg;"><button id="escala5" onclick="salvarEsc(5)">2m</button></span>
+                        <span style="--angle: 180deg;"><button id="escala6" onclick="salvarEsc(6)">2</button></span>
+                        <span style="--angle: 210deg;"><button id="escala7" onclick="salvarEsc(7)">10</button></span>
                         <span style="transform: translate(-50%, -50%) rotate(240deg) translateY(-125px) rotate(-240deg); color: black;"><strong>&Omega;</strong></span>
-                        <span style="--angle: 240deg;"><button>200</button></span>
-                        <span style="--angle: 270deg;"><button>2k</button></span>
-                        <span style="--angle: 300deg;"><button>20k</button></span>
-                        <span style="--angle: 330deg;"><button>2M</button></span>              
+                        <span style="--angle: 240deg;"><button id="escala8" onclick="salvarEsc(8)">200</button></span>
+                        <span style="--angle: 270deg;"><button id="escala9" onclick="salvarEsc(9)">2k</button></span>
+                        <span style="--angle: 300deg;"><button id="escala10" onclick="salvarEsc(10)">20k</button></span>
+                        <span style="--angle: 330deg;"><button id="escala11" onclick="salvarEsc(11)">2M</button></span>              
                     </div>
                 </div>
                 <div style="display: flex; width: 100%; height: 100px;">
