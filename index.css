@@ -5,8 +5,7 @@ html, body{
     margin: 0;
     height: 100%;
     text-align: justify;
-    overflow-x: hidden;
-}
+    overflow-x: hidden;}
 
 h1{
     color: azure;
