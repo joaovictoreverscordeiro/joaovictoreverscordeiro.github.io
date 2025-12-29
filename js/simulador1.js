@@ -6,7 +6,7 @@ const _10Av = document.getElementById("salvar10A");
 const VRAv = document.getElementById("salvarVRA");
 
 /*
-Funções para botões
+Funções para botões do multímetro
  */
 
 function salvarCOM(){
@@ -130,4 +130,25 @@ function measure(){
 /*
 Script para rodar o cursor do multímetro
 */
+
+/*
+Script para o botão de abrir/fechar chave
+*/
+
+var index = 0
+
+document.getElementById("botao").addEventListener("click", function(){
+    if (index%2 === 0){
+        document.getElementById("botao").style.backgroundColor = "blue";
+        document.getElementById("botao").style.justifyContent = "flex-end"
+        document.getElementById("switchState").innerHTML = "fechada"
+        index++
+    }
+    else{
+        document.getElementById("botao").style.backgroundColor = "black";
+        document.getElementById("botao").style.justifyContent = "flex-start"
+        document.getElementById("switchState").innerHTML = "aberta"
+        index++        
+    }
+});
 

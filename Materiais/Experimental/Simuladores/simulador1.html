@@ -6,6 +6,7 @@
     <title>J. V. Evers</title>
     <link rel="shortcut icon" href="../../../img/fav/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../../../index.css">
+    <link rel="stylesheet" href="../../../botao.css">
     <link rel="stylesheet" href="simualador1.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +112,14 @@
                 </div>
             </div>
             <div class="measure">
-
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+                    <div class="botaoCheck" id="botao" style="display:flex; justify-content: flex-start;">
+                        <div class="botao"></div>
+                    </div>
+                    <p><strong>Chave <span id="switchState">aberta</span></strong></p>
+                </div>
+                <button><strong>coletar medida</strong></button>
+                <button><strong>interromper medida</strong></button>
             </div>
         </div>
 
@@ -173,3 +181,4 @@
     </div>
 </body>
 <script src="../../../js/simulador1.js"></script>
+</html>
