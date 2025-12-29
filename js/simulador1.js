@@ -142,13 +142,54 @@ document.getElementById("botao").addEventListener("click", function(){
         document.getElementById("botao").style.backgroundColor = "blue";
         document.getElementById("botao").style.justifyContent = "flex-end"
         document.getElementById("switchState").innerHTML = "fechada"
+        document.getElementById("chave").setAttribute("d", "M50.19,199.61 L89.17,199.61")
         index++
     }
     else{
         document.getElementById("botao").style.backgroundColor = "black";
         document.getElementById("botao").style.justifyContent = "flex-start"
         document.getElementById("switchState").innerHTML = "aberta"
+        document.getElementById("chave").setAttribute("d", "M50.19,199.61 L89.17,184.55")
         index++        
     }
 });
 
+/*Script para selecionar o multímetro que será usado*/
+
+const mult1 = document.getElementById("mult1")
+const mult2 = document.getElementById("mult2")
+var multSel = ""
+
+mult1.addEventListener("click", function(){
+    if (multSel === ""){
+        mult1.style.backgroundColor = "rgba(196, 196, 196, 1)"
+        multSel = "mult1"
+    }
+    else if (multSel === "mult2"){
+        mult1.style.backgroundColor = "rgba(196, 196, 196, 1)"
+        mult2.style.backgroundColor = "white"
+        multSel = "mult1"
+    }
+    else{
+        mult1.style.backgroundColor = "white"
+        multSel = ""
+    }
+    console.log(multSel)
+});
+
+mult2.addEventListener("click", function(){
+    if (multSel === ""){
+        mult2.style.backgroundColor = "rgba(196, 196, 196, 1)"
+        multSel = "mult2"
+    }
+    else if (multSel === "mult1"){
+        mult2.style.backgroundColor = "rgba(196, 196, 196, 1)"
+        mult1.style.backgroundColor = "white"
+        multSel = "mult2"
+    }
+    else{
+        mult2.style.backgroundColor = "white"
+        multSel = ""
+    }
+    console.log(multSel)
+});
