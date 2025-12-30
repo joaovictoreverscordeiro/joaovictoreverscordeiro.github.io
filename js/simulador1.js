@@ -216,12 +216,29 @@ document.getElementById("coletar").addEventListener("click", () => {
 
             cronometro = setInterval(() => {
                 tempo = tempo + 10
-                console.log(tempo)
+                var tempoCtrl = tempo
 
                 let digitos = ["", "", "", "", "", ""]
 
                 for (let i = 0; i < 6; i++){
-                    digitos[i] = ((tempo%(10 ** (i+2))) - (tempo%(10 ** (i+1))))/(10 ** (i+1))
+                    if (i < 2){
+                        digitos[i] = (tempoCtrl%(10 ** (i+2)))/(10 ** (i+1))
+                        tempoCtrl = tempoCtrl - digitos[i] * (10 ** (i+1))
+                    }
+                    else{
+                        if (i === 2){
+                            digitos[i] = ((tempoCtrl/1000)%60)%10
+                        }
+                        else if (i === 3){
+                            digitos[i] = (((tempoCtrl/1000)%60) - ((tempoCtrl/1000)%60)%10)/10
+                        }
+                        else if (i === 4){
+                            digitos[i] = (((tempoCtrl/1000)-(tempoCtrl/1000)%60)/60)%10
+                        }
+                        else if (i === 5){
+                            digitos[i] = ((((tempoCtrl/1000)-(tempoCtrl/1000)%60)/60) - (((tempoCtrl/1000)-(tempoCtrl/1000)%60)/60)%10)/10
+                        }
+                    }
                 }
 
                 for (let i = 0; i<6; i++){
