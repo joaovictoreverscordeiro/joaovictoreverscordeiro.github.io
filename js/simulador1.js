@@ -1,6 +1,5 @@
 var terminaisMult = ["", ""];
-var terminaisCirc = ["", ""];
-var escala = "";
+var escala = 0;
 const COMv = document.getElementById("salvarCOM");
 const _10Av = document.getElementById("salvar10A");
 const VRAv = document.getElementById("salvarVRA");
@@ -69,54 +68,58 @@ function salvarVRA(){
 }
 
 function salvarEsc(n){
-    if (escala === ""){
-        escala = `escala${n}`
+    if (escala === 0){
+        escala = n
         console.log(escala)
-        document.getElementById(escala).style.backgroundColor = "rgb(20, 52, 96)"
+        document.getElementById(`escala${n}`).style.backgroundColor = "rgb(20, 52, 96)"
     }
     else{
-        document.getElementById(escala).style.backgroundColor = "rgb(8, 27, 54)"
-        escala = `escala${n}`
+        document.getElementById(`escala${escala}`).style.backgroundColor = "rgb(8, 27, 54)"
+        escala = n
         console.log(escala)
-        document.getElementById(escala).style.backgroundColor = "rgb(20, 52, 96)"
+        document.getElementById(`escala${n}`).style.backgroundColor = "rgb(20, 52, 96)"
     }
 
     if (1 <= n && n <=3){
-        document.getElementById("visorEsc").innerHTML = "V"
+        document.getElementById("escala").innerHTML = "V"
+        document.getElementById("valor").innerHTML = "0.0"
     }
     else if (n === 4){
-        document.getElementById("visorEsc").innerHTML = "&mu;A"
+        document.getElementById("escala").innerHTML = "&mu;A"
+        document.getElementById("valor").innerHTML = "0.0"
     }
     else if (n === 5){
-        document.getElementById("visorEsc").innerHTML = "mA"
+        document.getElementById("escala").innerHTML = "mA"
+        document.getElementById("valor").innerHTML = "0.0"
     }
     else if (n === 6 || n === 7){
-        document.getElementById("visorEsc").innerHTML = "A"
+        document.getElementById("escala").innerHTML = "A"
+        document.getElementById("valor").innerHTML = "0.0"
     }
     else if (n === 8){
-        document.getElementById("visorEsc").innerHTML = "&Omega;"
+        document.getElementById("escala").innerHTML = "&Omega;"
+        document.getElementById("valor").innerHTML = "0.0"
     }
     else if (n === 9 || n === 10){
-        document.getElementById("visorEsc").innerHTML = "k&Omega;"
+        document.getElementById("escala").innerHTML = "k&Omega;"
+        document.getElementById("valor").innerHTML = "0.0"
     }
     else if (n === 11){
-        document.getElementById("visorEsc").innerHTML = "M&Omega;"
+        document.getElementById("escala").innerHTML = "M&Omega;"
+        document.getElementById("valor").innerHTML = "0.0"
     }
 }
 
 function off(){
     terminaisMult = ["", ""];
-    terminaisCirc = ["", ""];
-    document.getElementById("visorValor").innerHTML = ""
-    document.getElementById("visorEsc").innerHTML = ""
+    document.getElementById("valor").innerHTML = ""
+    document.getElementById("escala").innerHTML = ""
 
-    if (escala !== ""){
-        document.getElementById(escala).style.backgroundColor = "rgb(8, 27, 54)"
-        escala = ""
+    if (escala !== 0){
+        document.getElementById(`escala${escala}`).style.backgroundColor = "rgb(8, 27, 54)"
+        escala = 0
     }
 }
-
-/* + funções para o circuito ( a desenvolver ) */
 
 /*
 Script para rodar o cursor do multímetro
@@ -127,9 +130,6 @@ Script para o botão de abrir/fechar chave
 */
 
 var index = 0
-let V = 0
-let I = 0
-let t0 = 0
 
 document.getElementById("botao").addEventListener("click", function(){
     if (index%2 === 0){
@@ -193,6 +193,9 @@ Script que de fato roda o simulador
  */
 
 let estado = 0
+let V = 0
+let I = 0
+const V0 = 9
 
 document.getElementById("coletar").addEventListener("click", () => {
     if (estado === 0){
@@ -226,9 +229,114 @@ document.getElementById("coletar").addEventListener("click", () => {
                 }
             }, 10);
 
+            evolucao = setInterval(() => {
+                /*Preparação ---  Checar se as conexões estão coerentes com a escala*/
+                function Check(terminais, escalaMult){
+                    if (multSel = ""){
+                        return true
+                    }
+                    /* ... */
+                }
+
+                let check = Check(terminaisMult, escala)
+
+                if (check === true){
+                    if (multSel = "mult1"){
+                        if (index%2 === 0){
+                            if (8 <= escala && escala <= 11){
+                                /*Capacitor carregando com o ohmimetro*/
+                            }
+                            else if (4 <= escala && escala <= 7){
+                                /*Capacitor descarregando no ampetimento*/
+                            }
+                            else if (1 <= escala && escala <= 3){
+                                /*Capacitor descarregando no voltímetro*/
+                            }
+                            else if (escala === 0){
+                                /*Tensão permanece constante*/
+                                V = V
+                            }
+                        }
+                        else{
+                            if (8 <= escala && escala <= 11){
+                                /*Capacitor carregando com o ohmimetro e a própria bateria*/
+                            }
+                            else if (4 <= escala && escala <= 7){
+                                /*Capacitor carregando com o amperímetro em paralelo*/
+                            }
+                            else if (1 <= escala && escala <= 3){
+                                /*Capacitor carregando com voltímetro em paralelo*/
+                            }
+                            else if (escala === 0){
+                                /*Capacitor carregando normal*/
+                            }                        
+                        }
+                    }
+                    else if (multSel === "mult2"){
+                        if (index%2 === 0){
+                            if (8 <= escala && escala <= 11){
+                                /*Tensão permanece constante*/
+                                V = V
+                            }
+                            else if (4 <= escala && escala <= 7){
+                                /*Tensão permanece constante*/
+                                V = V
+                            }
+                            else if (1 <= escala && escala <= 3){
+                                /*Tensão permanece constante*/
+                                V = V
+                            }
+                            else if (escala === 0){
+                                /*Tensão permanece constante*/
+                                V = V
+                            }
+                        }
+                    }
+                    else if (multSel === ""){
+                        if (8 <= escala && escala<= 11){
+                            /*Capacitor carregando com o ohmimetro e a própria bateria*/
+                        }
+                        else if (4 <= escala && escala <= 7){
+                            /*Capacitor carregando com o amperímetro em série*/
+                        }
+                        else if (1 <= escala && escala <= 3){
+                            /*Capacitor carregando com voltímetro em série*/
+                        }
+                        else if (escala === 0){
+                            /*Tensão permanece constante*/
+                            V = V
+                        }                        
+                    }
+                }
+                else if (check === false){
+                    if (multSel === "mult1"){
+                        if (index%2 === 0){
+                            V = V
+                        }
+                        else{
+                            /*Capacitor carregando normal*/
+                        }
+                    }
+                    else if (multSel === "mult2"){
+                        V = V
+                    }    
+                }  
+            }, 100);
+
             multimetro = setInterval(() => {
-                
-            }, 653);
+                /*Printar o resultado de acordo com a escala e a prepação */
+
+                if (escala === 0){
+
+                }
+                else if (escala === 1 && check === true){
+
+                }
+                /* ... */
+                else if (check === false){
+
+                }
+            }, 500);
         }
     }
 });
@@ -237,6 +345,8 @@ document.getElementById("interromper").addEventListener("click", () => {
     if (estado === 1){
         estado = 0
         clearInterval(cronometro)
+        clearInterval(multimetro)
+        clearInterval(evolucao)
     }
     else if (estado === 0){
         for (let i = 0; i<6; i++){
