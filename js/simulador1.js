@@ -118,15 +118,6 @@ function off(){
 
 /* + funções para o circuito ( a desenvolver ) */
 
-function measure(){
-    if (terminaisMult[0] !== "COM" || terminaisMult[1] === ""){
-        alert("Não foi possível coletar a medida, multímetro conectado errado.")
-    }
-    else{
-        console.log(terminaisMult, terminaisCirc, escala)
-    }
-}
-
 /*
 Script para rodar o cursor do multímetro
 */
@@ -136,6 +127,9 @@ Script para o botão de abrir/fechar chave
 */
 
 var index = 0
+let V = 0
+let I = 0
+let t0 = 0
 
 document.getElementById("botao").addEventListener("click", function(){
     if (index%2 === 0){
@@ -193,3 +187,61 @@ mult2.addEventListener("click", function(){
     }
     console.log(multSel)
 });
+
+/*
+Script que de fato roda o simulador
+ */
+
+let estado = 0
+
+document.getElementById("coletar").addEventListener("click", () => {
+    if (estado === 0){
+
+        /*Checar se está tudo ok*/
+
+        if (terminaisMult[0] === "" || terminaisMult[1] === ""){
+            alert("Terminais conectados da forma errada")
+        }
+        else if (multSel === ""){
+            alert("Escolha qual multímetro usar")
+        }
+        else{    
+            estado = 1
+            /* cronômetro */
+            
+            var tempo = 0
+
+            cronometro = setInterval(() => {
+                tempo = tempo + 10
+                console.log(tempo)
+
+                let digitos = ["", "", "", "", "", ""]
+
+                for (let i = 0; i < 6; i++){
+                    digitos[i] = ((tempo%(10 ** (i+2))) - (tempo%(10 ** (i+1))))/(10 ** (i+1))
+                }
+
+                for (let i = 0; i<6; i++){
+                    document.getElementById(`digito${i}`).innerHTML = digitos[i]
+                }
+            }, 10);
+
+            multimetro = setInterval(() => {
+                
+            }, 653);
+        }
+    }
+});
+
+document.getElementById("interromper").addEventListener("click", () => {
+    if (estado === 1){
+        estado = 0
+        clearInterval(cronometro)
+    }
+    else if (estado === 0){
+        for (let i = 0; i<6; i++){
+            document.getElementById(`digito${i}`).innerHTML = "0"
+        }        
+    }
+});
+
