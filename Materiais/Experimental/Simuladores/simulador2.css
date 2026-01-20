@@ -1,0 +1,15 @@
+.resultados{
+    min-width: 50%;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.config{
+    min-width: 50%;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;    
+}

@@ -4,6 +4,19 @@ const COMv = document.getElementById("salvarCOM");
 const _10Av = document.getElementById("salvar10A");
 const VRAv = document.getElementById("salvarVRA");
 
+function around(a){
+    return a * (1 + ((-1) ** Math.random()) * Math.random * 0.05)
+}
+
+R_OHM = around(0.5) /*Ohm*/
+V_OHM = around(1.2) /*Volts*/
+R_VOLT = around(10 ** 6) /*Ohm*/
+R_AMP = around(0.01) /*Ohm*/
+R = around(2 * 10 ** 5) /*Ohm*/
+C = around(5 * 10 ** (-5)) /*Farad*/
+V_0 = around(9) /*Volts*/
+
+
 /*
 Funções para botões do multímetro
  */
@@ -225,19 +238,18 @@ document.getElementById("coletar").addEventListener("click", () => {
                         digitos[i] = (tempoCtrl%(10 ** (i+2)))/(10 ** (i+1))
                         tempoCtrl = tempoCtrl - digitos[i] * (10 ** (i+1))
                     }
-                    else{
-                        if (i === 2){
-                            digitos[i] = ((tempoCtrl/1000)%60)%10
-                        }
-                        else if (i === 3){
-                            digitos[i] = (((tempoCtrl/1000)%60) - ((tempoCtrl/1000)%60)%10)/10
-                        }
-                        else if (i === 4){
-                            digitos[i] = (((tempoCtrl/1000)-(tempoCtrl/1000)%60)/60)%10
-                        }
-                        else if (i === 5){
-                            digitos[i] = ((((tempoCtrl/1000)-(tempoCtrl/1000)%60)/60) - (((tempoCtrl/1000)-(tempoCtrl/1000)%60)/60)%10)/10
-                        }
+                    else if (i === 2){ 
+                        tempoCtrl = tempoCtrl/1000 /**Transforma tempoCtrl em segundos */
+                        digitos[i] = ((tempoCtrl)%60)%10
+                    }
+                    else if (i === 3){
+                        digitos[i] = (((tempoCtrl)%60) - ((tempoCtrl)%60)%10)/10
+                    }
+                    else if (i === 4){
+                        digitos[i] = (((tempoCtrl)-(tempoCtrl)%60)/60)%10
+                    }
+                    else if (i === 5){
+                        digitos[i] = ((((tempoCtrl)-(tempoCtrl)%60)/60) - (((tempoCtrl)-(tempoCtrl)%60)/60)%10)/10
                     }
                 }
 
@@ -248,8 +260,8 @@ document.getElementById("coletar").addEventListener("click", () => {
 
             evolucao = setInterval(() => {
                 /*Preparação ---  Checar se as conexões estão coerentes com a escala*/
-                function Check(terminais, escalaMult){
-                    if (multSel = ""){
+                function Check(terminais, escalaMult, mult){
+                    if (mult = ""){
                         return true
                     }
                     /* ... */
