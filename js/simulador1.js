@@ -260,11 +260,26 @@ document.getElementById("coletar").addEventListener("click", () => {
 
             evolucao = setInterval(() => {
                 /*Preparação ---  Checar se as conexões estão coerentes com a escala*/
-                function Check(terminais, escalaMult, mult){
-                    if (mult = ""){
+                function Check(terminais, escalaMult){
+                    if (escalaMult = 0){
                         return true
                     }
-                    /* ... */
+                    else if ((escalaMult >= 1 && escalaMult <= 6) || (escalaMult >= 8 && escalaMult <= 11)){
+                        if (terminais == ["COM", "VRA"]){
+                            return true
+                        }
+                        else{
+                            return false
+                        }
+                    }
+                    else if (escalaMult === 7){
+                        if (terminais == ["COM", "10A"]){
+                            return true
+                        }
+                        else{
+                            return false
+                        }
+                    }
                 }
 
                 let check = Check(terminaisMult, escala)
@@ -274,12 +289,15 @@ document.getElementById("coletar").addEventListener("click", () => {
                         if (index%2 === 0){
                             if (8 <= escala && escala <= 11){
                                 /*Capacitor carregando com o ohmimetro*/
+                                V = V + (0.1 / (R_OHM * C)) * (V_OHM - V)
                             }
                             else if (4 <= escala && escala <= 7){
-                                /*Capacitor descarregando no ampetimento*/
+                                /*Capacitor descarregando no amperimento*/
+                                V = V * (1 - 0.1/(R_AMP * C))
                             }
                             else if (1 <= escala && escala <= 3){
                                 /*Capacitor descarregando no voltímetro*/
+                                V = V * (1 - 0.1/(R_VOLT * C))
                             }
                             else if (escala === 0){
                                 /*Tensão permanece constante*/
@@ -289,15 +307,18 @@ document.getElementById("coletar").addEventListener("click", () => {
                         else{
                             if (8 <= escala && escala <= 11){
                                 /*Capacitor carregando com o ohmimetro e a própria bateria*/
+                                V = V + (0.1/(R * C)) * (V_0 - (R/R_OHM) * (V - V_OHM))
                             }
                             else if (4 <= escala && escala <= 7){
                                 /*Capacitor carregando com o amperímetro em paralelo*/
+                                V = V + 0.1 * ((V_0 - V)/(R * C) - (V)/(R_AMP * C))
                             }
                             else if (1 <= escala && escala <= 3){
                                 /*Capacitor carregando com voltímetro em paralelo*/
+                                V = V + 0.1 * ((V_0 - V)/(R * C) - (V)/(R_VOLT * C))
                             }
                             else if (escala === 0){
-                                /*Capacitor carregando normal*/
+                                V = V + (V_0 - V) * (0.1/(R * C))
                             }                        
                         }
                     }
@@ -320,21 +341,24 @@ document.getElementById("coletar").addEventListener("click", () => {
                                 V = V
                             }
                         }
-                    }
-                    else if (multSel === ""){
-                        if (8 <= escala && escala<= 11){
-                            /*Capacitor carregando com o ohmimetro e a própria bateria*/
+                        else{
+                            if (8 <= escala && escala<= 11){
+                                /*Capacitor carregando com o ohmimetro e a própria bateria*/
+                                V = V + (V_0 + V_OHM - V) * (0.1/((R_OHM + R) * C))
+                            }
+                            else if (4 <= escala && escala <= 7){
+                                /*Capacitor carregando com o amperímetro em série*/
+                                V = V + (V_0 - V) * (0.1/((R + R_AMP) * C))
+                            }
+                            else if (1 <= escala && escala <= 3){
+                                /*Capacitor carregando com voltímetro em série*/
+                                V = V + (V_0 - V) * (0.1/((R + R_VOLT) * C))
+                            }
+                            else if (escala === 0){
+                                /*Tensão permanece constante*/
+                                V = V
+                            }                        
                         }
-                        else if (4 <= escala && escala <= 7){
-                            /*Capacitor carregando com o amperímetro em série*/
-                        }
-                        else if (1 <= escala && escala <= 3){
-                            /*Capacitor carregando com voltímetro em série*/
-                        }
-                        else if (escala === 0){
-                            /*Tensão permanece constante*/
-                            V = V
-                        }                        
                     }
                 }
                 else if (check === false){
@@ -343,7 +367,7 @@ document.getElementById("coletar").addEventListener("click", () => {
                             V = V
                         }
                         else{
-                            /*Capacitor carregando normal*/
+                            V = V * (1 + 0.1 / (R * C))
                         }
                     }
                     else if (multSel === "mult2"){
@@ -353,7 +377,7 @@ document.getElementById("coletar").addEventListener("click", () => {
             }, 100);
 
             multimetro = setInterval(() => {
-                /*Printar o resultado de acordo com a escala e a prepação */
+                /*Printar o resultado de acordo com a escala e a preparação */
 
                 if (escala === 0){
 
