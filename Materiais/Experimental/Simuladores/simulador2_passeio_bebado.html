@@ -36,10 +36,70 @@
     </header>
     <div class="conteiner">
         <div class="config">
-            <p>a</p>
+            <div class="instrucoes">
+                <h1 style="font-size: 30px">Passeio do bêbado</h1>
+                <p>defina cada uma das variáveis abaixo e clique em <strong>inserir</strong> para confirmá-las</p>
+            </div>
+            <div class="info">
+                <div style="display: flex; justify-content: center; align-items: space-around; margin: 7px; ">
+                    <input type="number" placeholder="núm. de passos" id="numStepsInput" min="0">
+                    <button id="numSteps">inserir</button>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: space-around; margin: 7px; ">
+                    <input type="number" placeholder="núm. de iterações" id="numItInput" min="0">
+                    <button id="numIt">inserir</button>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: space-around; margin: 7px; ">
+                    <p><strong>p<sub>-</sub> = </strong><span id="pLess">0.50</span></p>
+                    <input type="range" min="0" max="1" step="0.01" id="rangeP">
+                    <p><strong>p<sub>+</sub> = </strong><span id="pPlus">0.50</span></p>                    
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <div class="numItClass">
+                    <strong>num. de it.:</strong>&nbsp;<span id="printNumIt">0</span>
+                </div>
+                <div class="numStepsClass">
+                    <strong>num. de passos:</strong>&nbsp;<span id="printNumSteps">0</span>
+                </div>
+            </div>
+            <div class="start">
+                <button id="startBtn">Simular</button>
+            </div>
         </div>
         <div class="resultados">
-            <p>a</p>
+            <div style="width: 80%; height: 60%; display: flex; justify-content: center;">
+                <canvas id="histograma">
+                </canvas>
+            </div>
+            <div style="width: 80%; height: 40%; display: flex; justify-content: space-around">
+                <div style="display: flex;">
+                    <p><strong>&lt;x&gt; = </strong></p>
+                    <p id="media"></p>
+                </div>
+                <div style="display: flex;">
+                    <p><strong>&lt;x<sup>2</sup>&gt; = </strong></p>
+                    <p id="sqMedia"></p>
+                </div>
+            </div>
         </div>
     </div>
 </body>
+
+<script>
+    /*Atualiza os valores do range no HTML*/
+    var range = document.getElementById("rangeP")
+    var pPlus = Number(range.value)
+
+    range.addEventListener("input", () => {
+        pPlus = Number(range.value)
+        console.log(pPlus)
+        
+        document.getElementById("pLess").innerHTML = `${(1 - pPlus).toFixed(2)}`
+        document.getElementById("pPlus").innerHTML = `${pPlus.toFixed(2)}`  
+    })
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="../../../js/simulador2.js"></script>

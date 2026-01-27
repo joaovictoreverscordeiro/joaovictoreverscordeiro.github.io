@@ -257,31 +257,33 @@ document.getElementById("coletar").addEventListener("click", () => {
                     document.getElementById(`digito${i}`).innerHTML = digitos[i]
                 }
             }, 10);
+            
+            function Check(terminais, escalaMult){
+                if (escalaMult = 0){
+                    return true
+                }
+                else if ((escalaMult >= 1 && escalaMult <= 6) || (escalaMult >= 8 && escalaMult <= 11)){
+                    if (terminais == ["COM", "VRA"]){
+                        return true
+                    }
+                    else{
+                        return false
+                    }
+                }
+                else if (escalaMult === 7){
+                    if (terminais == ["COM", "10A"]){
+                        return true
+                    }
+                    else{
+                        return false
+                    }
+                }
+            }
+
 
             evolucao = setInterval(() => {
                 /*Preparação ---  Checar se as conexões estão coerentes com a escala*/
-                function Check(terminais, escalaMult){
-                    if (escalaMult = 0){
-                        return true
-                    }
-                    else if ((escalaMult >= 1 && escalaMult <= 6) || (escalaMult >= 8 && escalaMult <= 11)){
-                        if (terminais == ["COM", "VRA"]){
-                            return true
-                        }
-                        else{
-                            return false
-                        }
-                    }
-                    else if (escalaMult === 7){
-                        if (terminais == ["COM", "10A"]){
-                            return true
-                        }
-                        else{
-                            return false
-                        }
-                    }
-                }
-
+                
                 let check = Check(terminaisMult, escala)
 
                 if (check === true){
@@ -378,6 +380,11 @@ document.getElementById("coletar").addEventListener("click", () => {
 
             multimetro = setInterval(() => {
                 /*Printar o resultado de acordo com a escala e a preparação */
+                
+                let check = Check(terminaisMult, escala)
+
+                console.log(V)
+                console.log(check)
 
                 if (escala === 0){
 
