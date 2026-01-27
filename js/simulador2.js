@@ -61,7 +61,6 @@ let numSteps = 0
 let numIt = 0
 let time 
 let histogramaChart
-let listaCntrl = []
 
 document.getElementById("numSteps").addEventListener("click", () => {
     numSteps = Number(document.getElementById("numStepsInput").value)
@@ -78,7 +77,7 @@ document.getElementById("numSteps").addEventListener("click", () => {
 
 document.getElementById("numIt").addEventListener("click", () => {
     numIt = Number(document.getElementById("numItInput").value)
-    
+
     if ((numIt >= 0) && (numIt === Math.floor(numIt))){    
         document.getElementById("printNumIt").innerHTML = numIt
         time = (15/numIt) * 1000
@@ -91,6 +90,8 @@ document.getElementById("numIt").addEventListener("click", () => {
 })
 
 document.getElementById("startBtn").addEventListener("click", () => {
+
+    let listaCntrl = []
    
     if (histogramaChart){
         histogramaChart.destroy()
